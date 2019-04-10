@@ -45,8 +45,9 @@ export class SessionsService {
 
            localStorage.setItem('userid', userid);
            localStorage.setItem('isLoggedIn', 'true');
-           console.log('signed in log val:' + '' + localStorage.getItem('isLoggedIn'));
+           console.log('signed in log val:' + localStorage.getItem('isLoggedIn'));
 
+           location.reload();
            this.router.navigate(['dashboard']);
           } else {
             alert('Username or Password Incorrect');

@@ -45,4 +45,9 @@ export class AppComponent implements OnInit {
           this.menulist = response;
         })
   }
+
+  logout() {
+    localStorage.setItem('isLoggedIn', 'false');
+    this.router.navigate(['sessions/signin']);
+  }
 }
