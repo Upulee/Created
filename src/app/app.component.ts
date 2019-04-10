@@ -26,6 +26,13 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     
     this.isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if(this.isLoggedIn == null) {
+      localStorage.setItem('isLoggedIn','false');
+      this.isLoggedIn = localStorage.getItem('isLoggedIn');
+    }
+    console.log("log",this.isLoggedIn);
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

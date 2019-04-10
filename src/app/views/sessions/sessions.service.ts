@@ -44,7 +44,7 @@ export class SessionsService {
            const userid =  res['userid'] ;
 
            localStorage.setItem('userid', userid);
-           localStorage.setItem('isLoggedIn', '1');
+           localStorage.setItem('isLoggedIn', 'true');
            console.log('signed in log val:' + '' + localStorage.getItem('isLoggedIn'));
 
            this.router.navigate(['dashboard']);
