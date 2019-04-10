@@ -11,43 +11,38 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AppComponent implements OnInit {
   title = 'kasun-login';
 
-  menulist:any;
+  menulist: any;
 
   isLoggedIn: any;
   constructor(
-    private router: Router, 
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private http: HttpClient
     ) {
-      //console.log(router.url);
+      // console.log(router.url);
 
   }
 
   ngOnInit() {
-    
+
     this.isLoggedIn = localStorage.getItem('isLoggedIn');
-
-    if(this.isLoggedIn == null) {
-      localStorage.setItem('isLoggedIn','false');
-      this.isLoggedIn = localStorage.getItem('isLoggedIn');
-    }
-    console.log("log",this.isLoggedIn);
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    this.http.post('http://213.136.79.138:9090/getUserTaskList',1, httpOptions)
+    this.http.post('http://213.136.79.138:9090/getUserTaskList', 1, httpOptions)
         .subscribe(response => {
-          console.log("response",response);
+          console.log('response', response);
 
           this.menulist = response;
-        })
+        });
   }
 
   logout() {
     localStorage.setItem('isLoggedIn', 'false');
+    console.log('looged out val:' + localStorage.getItem('isLoggedIn'));
+
     this.router.navigate(['sessions/signin']);
   }
 }
