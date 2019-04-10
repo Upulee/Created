@@ -1,0 +1,74 @@
+
+<style>
+  .mat-card{
+    background: #f0ece8;
+    color:black;
+    margin:10px;
+  }
+</style>
+<div class="" style="padding:50px">
+
+
+  <div class="row" style="padding:50px">
+    <div class="col-lg-8">
+      <div class="row">
+
+        <div class="col-lg-6">
+          <mat-card class="example-card">
+            <mat-card-title>Annual Profit</mat-card-title>
+              <div style="display: block" *ngIf="bubbleChartData">
+                  <canvas baseChart [datasets]="bubbleChartData" [options]="bubbleChartOptions" [colors]="bubbleChartColors"
+                    [legend]="bubbleChartLegend" [chartType]="bubbleChartType"></canvas>
+                </div>
+          </mat-card>
+        </div>
+         
+
+    <div class="col-lg-6">
+      <mat-card class="example-card">
+          <mat-card-title>Sales per Annum</mat-card-title>
+        <div style="display: block" *ngIf="doughnutChartData">
+          <canvas baseChart
+                      [data]="doughnutChartData"
+                      [labels]="doughnutChartLabels"
+                      [chartType]="doughnutChartType"></canvas>
+        </div>
+      </mat-card>
+    </div>
+      </div>
+
+      <div class="col-lg-12">
+          <mat-card class="example-card">
+              <mat-card-title>Recharge Distribution</mat-card-title>
+            <div style="display: block" *ngIf="barChartData">
+              <canvas baseChart
+                      [datasets]="barChartData"
+                      [labels]="barChartLabels"
+                      [options]="barChartOptions"
+                      [legend]="barChartLegend"
+                      [chartType]="barChartType">
+              </canvas>
+            </div>
+          </mat-card>
+        </div>
+     
+    </div>
+    
+
+    <div class="col-lg-4">
+      <mat-card class="example-card">
+        <mat-card-title>Quartaly profit per Service Providers</mat-card-title>
+        <div style="display: block" *ngIf="radarChartData">
+          <canvas baseChart
+                  [datasets]="radarChartData"
+                  [labels]="radarChartLabels"
+                  [chartType]="radarChartType"></canvas>
+        </div>
+      </mat-card>
+    </div>
+   
+  </div>
+
+  
+    
+</div>

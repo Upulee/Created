@@ -1,0 +1,148 @@
+
+<div
+  fxLayout="row"
+  class="mt-signin"
+  fxLayout.lt-sm="column"
+  fxLayoutWrap="wrap"
+  fxLayoutAlign="center"
+>
+  <div fxFlex="30">
+    <mat-card>
+      <mat-card-header class="text-center">
+        <mat-card-title class="ml-0 text-center"
+          >Mobile Recharge</mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="reloadForm">
+          <div
+            class="mlr-16"
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutWrap="wrap"
+            fxLayoutAlign="center"
+          >
+            <div fxFlex="100">
+              <mat-form-field class="full-width">
+                <!-- <mat-select required placeholder="Select A Client">
+                  <mat-option>none</mat-option>
+                </mat-select> -->
+                <span
+                  style="vertical-align: middle; padding-right: 10px"
+                  matPrefix
+                  >+91</span
+                >
+                <input
+                  matInput
+                  [formControl]="reloadForm.controls['phoneNumber']"
+                  required
+                  name="phone-number"
+                  type="text"
+                  placeholder="Phone Number"
+                  maxlength="10"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+          <div
+            class="mlr-16"
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutWrap="wrap"
+            fxLayoutAlign="center"
+          >
+            <div fxFlex="100">
+              <mat-form-field class="full-width">
+                <mat-select
+                  required
+                  placeholder="Choose Operator"
+                  [formControl]="reloadForm.controls['operator']"
+                >
+                  <mat-option
+                    *ngFor="let summary of summaries"
+                    value="{{ summary[0] }}"
+                  >
+                    {{ summary[1] }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div
+            class="mlr-16"
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutWrap="wrap"
+            fxLayoutAlign="center"
+          >
+            <div fxFlex="100">
+              <mat-form-field class="full-width">
+                <span
+                  style="vertical-align: middle; padding-right: 10px"
+                  matPrefix
+                  >&#8360;</span
+                >
+                <input
+                  matInput
+                  [formControl]="reloadForm.controls['ammount']"
+                  required
+                  name="ammount"
+                  type="text"
+                  placeholder="Enter Recharge Ammount"
+                  maxlength="4"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div
+            class="mlr-16"
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutWrap="wrap"
+            fxLayoutAlign="center"
+          >
+            <div fxFlex="100">
+              <mat-form-field class="full-width">
+                <mat-select
+                  required
+                  placeholder="Choose Recharge Type"
+                  [formControl]="reloadForm.controls['rechargetype']"
+                >
+                  <mat-option
+                    *ngFor="let typesOfRechargeSub of typesOfRechargeSub"
+                    value="{{ typesOfRechargeSub[0] }}"
+                  >
+                    {{ typesOfRechargeSub[1] }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <div
+          class="mlr-16"
+          fxLayout="row"
+          fxLayout.lt-sm="column"
+          fxLayoutWrap="wrap"
+          fxLayoutAlign="center"
+        >
+          <div fxFlex="100">
+            <button
+              mat-raised-button
+              color="primary"
+              [disabled]="reloadForm.invalid"
+              (click)="recharge()"
+              style="width: 100%;"
+            >
+              Recharge
+            </button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
