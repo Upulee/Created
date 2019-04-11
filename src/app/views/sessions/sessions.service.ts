@@ -33,23 +33,23 @@ export class SessionsService {
     const obj = { username: signinData.email, password: signinData.password };
     const obj1 = { userName: signinData.email };
 
-    this.http.post('http://213.136.79.138:9090/login/chkusername', obj1, httpOptions).subscribe( res1 => {
+    this.http.post('http://213.136.79.138:8080/gdp/login/chkusername', obj1, httpOptions).subscribe( res1 => {
     console.log(res1);
-    console.log(res1['returnFlag']);
-    if (res1['returnFlag'] === 0) {
-        this.http.post('http://213.136.79.138:9090/login', obj, httpOptions).subscribe( res => {
+    console.log(res1['retFlag']);
+    if ((res1['retFlag']) === '0') {
+        this.http.post('http://213.136.79.138:8080/gdp/login', obj, httpOptions).subscribe( res => {
           console.log(res);
-          console.log('userid' + '' + res['userid']);
+         // console.log('userid' + '' + res['userid']);
 
           if (res['returnFlag'] === 0) {
-           const userid =  res['userid'] ;
+             const userid =  res['loginEmployeeId'] ;
+             localStorage.setItem('userid', userid);
+             localStorage.setItem('isLoggedIn', 'true');
+          // console.log('signed in log val:' + localStorage.getItem('isLoggedIn'));
 
-           localStorage.setItem('userid', userid);
-           localStorage.setItem('isLoggedIn', 'true');
-           console.log('signed in log val:' + localStorage.getItem('isLoggedIn'));
 
-           // location.reload();
-           this.router.navigate(['dashboard']);
+             this.router.navigate(['dashboard']);
+            //  location.reload();
           } else {
             alert('Username or Password Incorrect');
           }

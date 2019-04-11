@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
         'Content-Type': 'application/json'
       })
     };
-    this.http.post('http://213.136.79.138:9090/getUserTaskList', 1, httpOptions)
+    this.http.post('http://213.136.79.138:8080/gdp/getUserTaskList', 1, httpOptions)
         .subscribe(response => {
           console.log('response', response);
 

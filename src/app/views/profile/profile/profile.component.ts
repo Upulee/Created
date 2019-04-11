@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   public typesOfRecharge: any;
   // tslint:disable-next-line:ban-types
   typesOfRechargeSub: Object;
+
   rechargeId;
 
   constructor(
@@ -35,11 +36,11 @@ export class ProfileComponent implements OnInit {
     };
 
     this.http
-      .post('http://213.136.79.138:9090/topup/getsplist',{
-        'serviceId':'1',
-        'subserviceId':'1',
-        'userId':'1'
-      },httpOptions)
+      .post('http://213.136.79.138:8080/gdp/topup/getsplist', {
+        serviceId: '1',
+        subserviceId: '1',
+        userId: '1'
+      }, httpOptions)
       .subscribe(
         res => {
           console.log(res);
@@ -64,30 +65,27 @@ export class ProfileComponent implements OnInit {
     //     }
     //   );
 
-    
+
   }
 
   ngOnInit() {
     this.buildReloadForm();
 
     this.activateRoute.queryParams.subscribe(params => {
-      const rechardId = params['rechardId'];
+      const rechargeId = params.rechargeId;
 
       let serviceId = '0';
       let servicetypeid = '0';
-      if(rechardId == 10)
-      {
+      if (rechargeId === 10) {
           serviceId = '1';
           servicetypeid = '1';
-          localStorage.setItem('serviceId',serviceId);
-          localStorage.setItem('servicetypeid',servicetypeid);
-      }
-      else if(rechardId == 11)
-      {
+          localStorage.setItem('serviceId', serviceId);
+          localStorage.setItem('servicetypeid', servicetypeid);
+      } else if (rechargeId === 11) {
           serviceId = '2';
           servicetypeid = '2';
-          localStorage.setItem('serviceId',serviceId);
-          localStorage.setItem('servicetypeid',servicetypeid);
+          localStorage.setItem('serviceId', serviceId);
+          localStorage.setItem('servicetypeid', servicetypeid);
 
       }
 
@@ -96,13 +94,13 @@ export class ProfileComponent implements OnInit {
           'Content-Type': 'application/json'
         })
       };
-  
+
       this.http
-        .post('http://213.136.79.138:9090/topup/getsplist',{
-          'serviceId':serviceId,
-          'subserviceId':'1',
-          'userId': localStorage.getItem('userid')
-        },httpOptions)
+        .post('http://213.136.79.138:8080/gdp/topup/getsplist', {
+          serviceId,
+          subserviceId: '1',
+          userId: localStorage.getItem('userid')
+        }, httpOptions)
         .subscribe(
           res => {
             console.log(res);
@@ -113,11 +111,11 @@ export class ProfileComponent implements OnInit {
           }
         );
 
-          
-    this.http
-    .post('http://213.136.79.138:9090/topup/getsubservicelist', {
-      'servicetypeid' : servicetypeid,
-      'userid' : localStorage.getItem('userid')
+
+      this.http
+    .post('http://213.136.79.138:8080/gdp/topup/getsubservicelist', {
+      servicetypeid,
+      userid : localStorage.getItem('userid')
     }, httpOptions)
     .subscribe(
       res => {
@@ -128,7 +126,7 @@ export class ProfileComponent implements OnInit {
         console.log(err);
       }
     );
-      
+
     });
   }
 
@@ -155,7 +153,7 @@ export class ProfileComponent implements OnInit {
       userid: localStorage.getItem('userid')
     };
     this.http
-      .post('http://213.136.79.138:9090/topup', obj, httpOptions)
+      .post('http://213.136.79.138:8080/gdp/topup', obj, httpOptions)
       .subscribe(
         res => {
           console.log(res[0].returnmessage);
