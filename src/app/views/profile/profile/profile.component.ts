@@ -83,19 +83,19 @@ export class ProfileComponent implements OnInit {
       if ( rechargeId == '10') {
           serviceId = '1';
           servicetypeId = '1';
-          alert('te');
+          //alert('te');
           localStorage.setItem('serviceid', serviceId);
           localStorage.setItem('servicetypeid', servicetypeId);
       } else if ( rechargeId == '11') {
           serviceId = '2';
           servicetypeId = '2';
-          alert("11");
+          //alert("11");
           localStorage.setItem('serviceid', serviceId);
           localStorage.setItem('servicetypeid', servicetypeId);
 
       }
       else{
-        alert("elese"+rechargeId);
+        //alert("elese"+rechargeId);
       }
 
       const httpOptions = {
