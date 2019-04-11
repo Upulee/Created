@@ -29,27 +29,27 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private activateRoute: ActivatedRoute
   ) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json'
+    //   })
+    // };
 
-    this.http
-      .post('http://213.136.79.138:8080/gdp/topup/getsplist', {
-        serviceId: '1',
-        subserviceId: '1',
-        userId: '1'
-      }, httpOptions)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.summaries = res;
-        },
-        err => {
-          console.log(err);
-        }
-      );
+    // this.http
+    //   .post('http://213.136.79.138:8080/gdp/topup/getsplist', {
+    //     serviceid: serviceId,
+    //     subserviceid: '1',
+    //     userid: localStorage.getItem('userid')
+    //   }, httpOptions)
+    //   .subscribe(
+    //     res => {
+    //       console.log(res);
+    //       this.summaries = res;
+    //     },
+    //     err => {
+    //       console.log(err);
+    //     }
+    //   );
 
 
     // const obj = 1;
@@ -70,36 +70,40 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.buildReloadForm();
+    this.rechargeId = this.activateRoute.snapshot.queryParamMap.get('rechargeId');
+    // this.activateRoute.queryParams
+    //  .subscribe(params => {
+    //  this.rechargeId = this.activateRoute.snapshot.queryParamMap.get('rechargeId');
+      // tslint:disable-next-line:no-string-literal
+     // this.rechargeId = params['rechargeId'];
+    console.log('rechargeId',  this.rechargeId);
 
-    this.activateRoute.queryParams.subscribe(params => {
-      const rechargeId = params.rechargeId;
-
-      let serviceId = '0';
-      let servicetypeid = '0';
-      if (rechargeId === 10) {
+    let serviceId = '0';
+    let servicetypeId = '0';
+    if ( this.rechargeId === 10) {
           serviceId = '1';
-          servicetypeid = '1';
-          localStorage.setItem('serviceId', serviceId);
-          localStorage.setItem('servicetypeid', servicetypeid);
-      } else if (rechargeId === 11) {
+          servicetypeId = '1';
+          localStorage.setItem('serviceid', serviceId);
+          localStorage.setItem('servicetypeid', servicetypeId);
+      } else if ( this.rechargeId === 11) {
           serviceId = '2';
-          servicetypeid = '2';
-          localStorage.setItem('serviceId', serviceId);
-          localStorage.setItem('servicetypeid', servicetypeid);
+          servicetypeId = '2';
+          localStorage.setItem('serviceid', serviceId);
+          localStorage.setItem('servicetypeid', servicetypeId);
 
       }
 
-      const httpOptions = {
+    const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })
       };
 
-      this.http
+    this.http
         .post('http://213.136.79.138:8080/gdp/topup/getsplist', {
-          serviceId,
+          serviceid: serviceId,
           subserviceId: '1',
-          userId: localStorage.getItem('userid')
+          userid: localStorage.getItem('userid')
         }, httpOptions)
         .subscribe(
           res => {
@@ -112,9 +116,9 @@ export class ProfileComponent implements OnInit {
         );
 
 
-      this.http
+    this.http
     .post('http://213.136.79.138:8080/gdp/topup/getsubservicelist', {
-      servicetypeid,
+      servicetypeid: servicetypeId,
       userid : localStorage.getItem('userid')
     }, httpOptions)
     .subscribe(
@@ -127,10 +131,10 @@ export class ProfileComponent implements OnInit {
       }
     );
 
-    });
+   // })
   }
 
-  buildReloadForm() {
+buildReloadForm() {
     this.reloadForm = this.fb.group({
       phoneNumber: ['', Validators.required],
       operator: ['', Validators.required],
@@ -139,7 +143,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  recharge() {
+recharge() {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

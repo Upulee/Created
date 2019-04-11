@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
   title = 'kasun-login';
 
   menulist: any;
+  userid: any;
+
 
   isLoggedIn: any;
   constructor(
@@ -26,22 +28,31 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
     this.isLoggedIn = localStorage.getItem('isLoggedIn');
+    this.userid = localStorage.getItem('userid');
+    console.log(this.userid);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    this.http.post('http://213.136.79.138:8080/gdp/getUserTaskList', 1, httpOptions)
+
+    if (this.userid !== null) {
+    this.http.post('http://213.136.79.138:8080/gdp/login/getUserTaskList', this.userid , httpOptions)
         .subscribe(response => {
           console.log('response', response);
 
           this.menulist = response;
-        });
+        },
+        error => {
+          console.log(error);
+        } );
+      }
   }
 
   logout() {
     localStorage.setItem('isLoggedIn', 'false');
-    console.log('looged out val:' + localStorage.getItem('isLoggedIn'));
+    localStorage.setItem('userid', null);
+    // console.log('logged out val:' + localStorage.getItem('isLoggedIn'));
 
     this.router.navigate(['sessions/signin']);
   }

@@ -48,8 +48,8 @@ export class SessionsService {
           // console.log('signed in log val:' + localStorage.getItem('isLoggedIn'));
 
 
-             this.router.navigate(['dashboard']);
-            //  location.reload();
+             location.href = 'dashboard';
+          // this.router.navigate(['dashboard']);
           } else {
             alert('Username or Password Incorrect');
           }
