@@ -106,7 +106,7 @@
                       fxLayoutAlign="center"
                     >
                       <div fxFlex="100">
-                        <mat-form-field class="full-width">
+                        <!-- <mat-form-field class="full-width"> -->
                           <!-- <mat-select
                             required
                             placeholder="Choose Recharge Type"
@@ -120,14 +120,13 @@
                             </mat-option>
                           </mat-select> -->
                           <mat-radio-group
-                          flex-direction: row;
                           aria-labelledby="example-radio-group-label"
                           class="example-radio-group"
                           [formControl]="reloadForm.controls['rechargetype']">
                           <mat-radio-button class="example-radio-button"  [value]="1">Stv 1</mat-radio-button>
                           <mat-radio-button class="example-radio-button"  [value]="2">Stv 2</mat-radio-button>
                           </mat-radio-group>
-                        </mat-form-field>
+                        <!-- </mat-form-field> -->
                       </div>
                     </div>
                   </form>

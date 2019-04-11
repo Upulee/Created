@@ -74,33 +74,27 @@ export class ProfileComponent implements OnInit {
 
     let rechargeId = '0';
     this.activateRoute.paramMap.subscribe(params => {
-<<<<<<< HEAD
       rechargeId = params.get('rid');
-      console.log(rechargeId);
-=======
-      rechargeId = params.get("rid");
-      console.log("r",rechargeId);
->>>>>>> c106175f28fa78fdf0d877bdc91939bcef269413
+      console.log('r', rechargeId);
 
       let serviceId = '0';
       let servicetypeId = '0';
 
-      if ( rechargeId == '10') {
+      if ( rechargeId === '10') {
           serviceId = '1';
           servicetypeId = '1';
-          //alert('te');
+          // alert('te');
           localStorage.setItem('serviceid', serviceId);
           localStorage.setItem('servicetypeid', servicetypeId);
-      } else if ( rechargeId == '11') {
+      } else if ( rechargeId === '11') {
           serviceId = '2';
           servicetypeId = '2';
-          //alert("11");
+          // alert("11");
           localStorage.setItem('serviceid', serviceId);
           localStorage.setItem('servicetypeid', servicetypeId);
 
-      }
-      else{
-        //alert("elese"+rechargeId);
+      } else {
+        // alert("elese"+rechargeId);
       }
 
       const httpOptions = {
@@ -126,21 +120,21 @@ export class ProfileComponent implements OnInit {
       );
 
 
-      this.http
-          .post('http://213.136.79.138:8080/gdp/topup/getsubservicelist', {
-            servicetypeid: servicetypeId,
-            userid : localStorage.getItem('userid')
-          }, httpOptions)
-          .subscribe(
-            res => {
-              console.log('sum', res);
-              this.typesOfRechargeSub = res;
-            },
-            err => {
-              console.log(err);
-            }
-          );
-    });
+    //   this.http
+    //       .post('http://213.136.79.138:8080/gdp/topup/getsubservicelist', {
+    //         servicetypeid: servicetypeId,
+    //         userid : localStorage.getItem('userid')
+    //       }, httpOptions)
+    //       .subscribe(
+    //         res => {
+    //           console.log('sum', res);
+    //           this.typesOfRechargeSub = res;
+    //         },
+    //         err => {
+    //           console.log(err);
+    //         }
+    //       );
+     });
     // let rechargeId = this.activateRoute.snapshot.paramMap.get('rid');
 
   }
@@ -167,6 +161,7 @@ recharge() {
       stvtype: this.reloadForm.value.rechargetype,
       userid: localStorage.getItem('userid')
     };
+    console.log(obj.stvtype);
     this.http
       .post('http://213.136.79.138:8080/gdp/topup', obj, httpOptions)
       .subscribe(
