@@ -34,13 +34,13 @@ export class SessionsService {
     const obj1 = { userName: signinData.email };
 
     this.http.post('http://213.136.79.138:9090/login/chkusername', obj1, httpOptions).subscribe( res1 => {
+    console.log(res1);
     console.log(res1['returnFlag']);
     if (res1['returnFlag'] === 0) {
         this.http.post('http://213.136.79.138:9090/login', obj, httpOptions).subscribe( res => {
           console.log(res);
           console.log('userid' + '' + res['userid']);
 
-          // this.status = res["returnFlag"];
           if (res['returnFlag'] === 0) {
            const userid =  res['userid'] ;
 

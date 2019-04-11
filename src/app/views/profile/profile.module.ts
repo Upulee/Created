@@ -8,7 +8,8 @@ import {
   MatCheckboxModule,
   MatIconModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatDividerModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProfileRoutes } from './profile-routing';
@@ -31,6 +32,7 @@ import { RouterModule } from '@angular/router';
     FlexLayoutModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatDividerModule,
     RouterModule.forChild(ProfileRoutes)
   ]
 })
