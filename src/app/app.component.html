@@ -47,7 +47,7 @@
       <mat-sidenav #snav [mode]="over" fixedTopGap="56">
           <mat-nav-list style="    min-width: 15vw;">
 
-              <a *ngFor="let item of menulist" mat-list-item routerLink="/profile/user-reload/{{item[0]}}" ><mat-icon >dashboard</mat-icon>{{ item[2] }}</a>
+              <a *ngFor="let item of menulist" mat-list-item routerLink="/profile/user-reload/{{item[1]}}" ><mat-icon >dashboard</mat-icon>{{ item[2] }}</a>
 
           </mat-nav-list>
     </mat-sidenav>

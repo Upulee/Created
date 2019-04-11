@@ -61,7 +61,7 @@
                             [formControl]="reloadForm.controls['operator']"
                           >
                             <mat-option
-                              *ngFor="let summary of summary"
+                              *ngFor="let summary of summaries"
                               value="{{ summary[0] }}"
                             >
                               {{ summary[1] }}

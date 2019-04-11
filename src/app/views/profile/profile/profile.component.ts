@@ -75,21 +75,27 @@ export class ProfileComponent implements OnInit {
     let rechargeId = '0';
     this.activateRoute.paramMap.subscribe(params => {
       rechargeId = params.get("rid");
-      console.log(rechargeId);
+      console.log("r",rechargeId);
 
       let serviceId = '0';
       let servicetypeId = '0';
-      if ( this.rechargeId === 10) {
+
+      if ( rechargeId == '10') {
           serviceId = '1';
           servicetypeId = '1';
+          alert('te');
           localStorage.setItem('serviceid', serviceId);
           localStorage.setItem('servicetypeid', servicetypeId);
-      } else if ( this.rechargeId === 11) {
+      } else if ( rechargeId == '11') {
           serviceId = '2';
           servicetypeId = '2';
+          alert("11");
           localStorage.setItem('serviceid', serviceId);
           localStorage.setItem('servicetypeid', servicetypeId);
 
+      }
+      else{
+        alert("elese"+rechargeId);
       }
 
       const httpOptions = {
@@ -101,7 +107,7 @@ export class ProfileComponent implements OnInit {
       this.http
       .post('http://213.136.79.138:8080/gdp/topup/getsplist', {
         serviceid: serviceId,
-        subserviceId: '1',
+        subserviceid: '1',
         userid: localStorage.getItem('userid')
       }, httpOptions)
       .subscribe(
