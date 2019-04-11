@@ -70,17 +70,17 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.buildReloadForm();
-    this.rechargeId = this.activateRoute.snapshot.queryParamMap.get('rechargeId');
-    // this.activateRoute.queryParams
-    //  .subscribe(params => {
-    //  this.rechargeId = this.activateRoute.snapshot.queryParamMap.get('rechargeId');
-      // tslint:disable-next-line:no-string-literal
-     // this.rechargeId = params['rechargeId'];
-    console.log('rechargeId',  this.rechargeId);
 
-    let serviceId = '0';
-    let servicetypeId = '0';
-    if ( this.rechargeId === 10) {
+    this.activateRoute.queryParams
+     .subscribe(params => {
+     this.rechargeId = this.activateRoute.snapshot.queryParamMap.get('rechargeId');
+     // tslint:disable-next-line:no-string-literal
+     this.rechargeId = params['rechargeId'];
+     console.log('rechargeId',  this.rechargeId);
+
+     let serviceId = '0';
+     let servicetypeId = '0';
+     if ( this.rechargeId === 10) {
           serviceId = '1';
           servicetypeId = '1';
           localStorage.setItem('serviceid', serviceId);
@@ -93,13 +93,13 @@ export class ProfileComponent implements OnInit {
 
       }
 
-    const httpOptions = {
+     const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })
       };
 
-    this.http
+     this.http
         .post('http://213.136.79.138:8080/gdp/topup/getsplist', {
           serviceid: serviceId,
           subserviceId: '1',
@@ -116,7 +116,7 @@ export class ProfileComponent implements OnInit {
         );
 
 
-    this.http
+     this.http
     .post('http://213.136.79.138:8080/gdp/topup/getsubservicelist', {
       servicetypeid: servicetypeId,
       userid : localStorage.getItem('userid')
@@ -131,7 +131,7 @@ export class ProfileComponent implements OnInit {
       }
     );
 
-   // })
+    });
   }
 
 buildReloadForm() {

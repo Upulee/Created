@@ -35,13 +35,17 @@ export class SessionsService {
 
     this.http.post('http://213.136.79.138:8080/gdp/login/chkusername', obj1, httpOptions).subscribe( res1 => {
     console.log(res1);
+    // tslint:disable-next-line:no-string-literal
     console.log(res1['retFlag']);
+    // tslint:disable-next-line:no-string-literal
     if ((res1['retFlag']) === '0') {
         this.http.post('http://213.136.79.138:8080/gdp/login', obj, httpOptions).subscribe( res => {
           console.log(res);
          // console.log('userid' + '' + res['userid']);
 
+          // tslint:disable-next-line:no-string-literal
           if (res['returnFlag'] === 0) {
+             // tslint:disable-next-line:no-string-literal
              const userid =  res['loginEmployeeId'] ;
              localStorage.setItem('userid', userid);
              localStorage.setItem('isLoggedIn', 'true');
