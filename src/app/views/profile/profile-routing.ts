@@ -6,7 +6,7 @@ export const ProfileRoutes: Routes = [
         path: '',
         children: [
             {
-                path: 'user-reload',
+                path: 'user-reload/:rid',
                 component: ProfileComponent,
                 data: { title: 'Profile' }
             }
