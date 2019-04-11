@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse
 } from '@angular/common/http';
 import { NavComponent } from '../../../components/nav/nav.component';
+import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -71,16 +72,14 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.buildReloadForm();
 
-    this.activateRoute.queryParams
-     .subscribe(params => {
-     this.rechargeId = this.activateRoute.snapshot.queryParamMap.get('rechargeId');
-     // tslint:disable-next-line:no-string-literal
-     this.rechargeId = params['rechargeId'];
-     console.log('rechargeId',  this.rechargeId);
+    let rechargeId = '0';
+    this.activateRoute.paramMap.subscribe(params => {
+      rechargeId = params.get('rid');
+      console.log(rechargeId);
 
-     let serviceId = '0';
-     let servicetypeId = '0';
-     if ( this.rechargeId === 10) {
+      let serviceId = '0';
+      let servicetypeId = '0';
+      if ( this.rechargeId === 10) {
           serviceId = '1';
           servicetypeId = '1';
           localStorage.setItem('serviceid', serviceId);
@@ -93,45 +92,46 @@ export class ProfileComponent implements OnInit {
 
       }
 
-     const httpOptions = {
+      const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })
       };
 
-     this.http
-        .post('http://213.136.79.138:8080/gdp/topup/getsplist', {
-          serviceid: serviceId,
-          subserviceId: '1',
-          userid: localStorage.getItem('userid')
-        }, httpOptions)
-        .subscribe(
-          res => {
-            console.log(res);
-            this.summaries = res;
-          },
-          err => {
-            console.log(err);
-          }
-        );
+      this.http
+      .post('http://213.136.79.138:8080/gdp/topup/getsplist', {
+        serviceid: serviceId,
+        subserviceId: '1',
+        userid: localStorage.getItem('userid')
+      }, httpOptions)
+      .subscribe(
+        res => {
+          console.log('sum', res);
+          this.summaries = res;
+        },
+        err => {
+          console.log(err);
+        }
+      );
 
 
-     this.http
-    .post('http://213.136.79.138:8080/gdp/topup/getsubservicelist', {
-      servicetypeid: servicetypeId,
-      userid : localStorage.getItem('userid')
-    }, httpOptions)
-    .subscribe(
-      res => {
-        console.log(res);
-        this.typesOfRechargeSub = res;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
+      this.http
+          .post('http://213.136.79.138:8080/gdp/topup/getsubservicelist', {
+            servicetypeid: servicetypeId,
+            userid : localStorage.getItem('userid')
+          }, httpOptions)
+          .subscribe(
+            res => {
+              console.log('sum', res);
+              this.typesOfRechargeSub = res;
+            },
+            err => {
+              console.log(err);
+            }
+          );
     });
+    // let rechargeId = this.activateRoute.snapshot.paramMap.get('rid');
+
   }
 
 buildReloadForm() {

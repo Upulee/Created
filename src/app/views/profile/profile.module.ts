@@ -9,7 +9,8 @@ import {
   MatIconModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatDividerModule
+  MatDividerModule,
+  MatRadioModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProfileRoutes } from './profile-routing';
@@ -33,6 +34,7 @@ import { RouterModule } from '@angular/router';
     MatSelectModule,
     MatSnackBarModule,
     MatDividerModule,
+    MatRadioModule,
     RouterModule.forChild(ProfileRoutes)
   ]
 })

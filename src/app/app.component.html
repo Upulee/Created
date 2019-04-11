@@ -1,16 +1,16 @@
 <div>
-        
-  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-dark" [containerInside]="true">
+
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-dark" [containerInside]="false">
     <button *ngIf="isLoggedIn == 'true'" mat-icon-button (click)="snav.toggle()"><mat-icon style="color:white;">menu</mat-icon></button>
     <!-- Navbar brand -->
     <mdb-navbar-brand  >
-       
+
         <a  class="navbar-brand" style="color:cyan" ng>GO DIGITAL PAY</a>
     </mdb-navbar-brand>
-  
+
     <!-- Collapsible content -->
     <links>
-  
+
       <!-- Links -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
@@ -19,7 +19,7 @@
         <li class="nav-item">
           <a class="nav-link waves-light"  *ngIf="isLoggedIn == 'true'"  (click)="snav.toggle()" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon> Settings</a>
         </li>
-  
+
         <!-- Dropdown -->
         <li class="nav-item dropdown" dropdown>
           <a   *ngIf="isLoggedIn == 'true'"  (click)="snav.toggle()" dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
@@ -29,26 +29,26 @@
             <a  *ngIf="isLoggedIn == 'true'"  (click)="snav.toggle()" class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="logout()">Log out</a>
           </div>
         </li>
-  
+
       </ul>
       <!-- Links -->
     </links>
     <!-- Collapsible content -->
-  
-   
-  
-  
-  
+
+
+
+
+
   </mdb-navbar>
-    
+
    <!-- side nav content -->
-  
+
     <mat-sidenav-container class="example-sidenav-container">
       <mat-sidenav #snav [mode]="over" fixedTopGap="56">
           <mat-nav-list style="    min-width: 15vw;">
 
-              <a *ngFor="let item of menulist" mat-list-item routerLink="{{ item[3] }}" queryParams="{rechargeId: '{{ item[1] }}'}"><mat-icon >dashboard</mat-icon>{{ item[2] }}</a>
-              
+              <a *ngFor="let item of menulist" mat-list-item routerLink="/profile/user-reload/{{item[1]}}" ><mat-icon >dashboard</mat-icon>{{ item[2] }}</a>
+
           </mat-nav-list>
     </mat-sidenav>
 
@@ -56,7 +56,7 @@
       <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
-    
+
 
   <app-footer></app-footer>
 </div>
