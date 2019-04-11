@@ -107,7 +107,7 @@
                     >
                       <div fxFlex="100">
                         <mat-form-field class="full-width">
-                          <mat-select
+                          <!-- <mat-select
                             required
                             placeholder="Choose Recharge Type"
                             [formControl]="reloadForm.controls['rechargetype']"
@@ -118,16 +118,15 @@
                             >
                               {{ typesOfRechargeSub[1] }}
                             </mat-option>
-                          </mat-select>
-                          <!-- <mat-radio-group
+                          </mat-select> -->
+                          <mat-radio-group
                           flex-direction: row;
                           aria-labelledby="example-radio-group-label"
                           class="example-radio-group"
                           [formControl]="reloadForm.controls['rechargetype']">
-                          <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-                            {{season}}
-                          </mat-radio-button>
-                        </mat-radio-group> -->
+                          <mat-radio-button class="example-radio-button"  [value]="1">Stv 1</mat-radio-button>
+                          <mat-radio-button class="example-radio-button"  [value]="2">Stv 2</mat-radio-button>
+                          </mat-radio-group>
                         </mat-form-field>
                       </div>
                     </div>
