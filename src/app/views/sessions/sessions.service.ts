@@ -47,8 +47,11 @@ export class SessionsService {
           if (res['returnFlag'] === 0) {
              // tslint:disable-next-line:no-string-literal
              const userid =  res['loginEmployeeId'] ;
+             const username = res['username'];
              localStorage.setItem('userid', userid);
              localStorage.setItem('isLoggedIn', 'true');
+             localStorage.setItem('username' , username);
+             console.log(username);
           // console.log('signed in log val:' + localStorage.getItem('isLoggedIn'));
 
 
@@ -64,7 +67,7 @@ export class SessionsService {
         }
       );
       } else {
-        alert('User unavailable.Please Register!');
+        alert('UserName Not Available');
       }
      },
       err => {

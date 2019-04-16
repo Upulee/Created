@@ -16,17 +16,20 @@ export class AppComponent implements OnInit {
 
 
   isLoggedIn: any;
+  public username: any;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private http: HttpClient
     ) {
       // console.log(router.url);
-
+      this.username = localStorage.getItem('username');
+      console.log('username after loggin', this.username);
   }
 
   ngOnInit() {
-
+    this.username = localStorage.getItem('username');
+    console.log('username after loggin', this.username);
     this.isLoggedIn = localStorage.getItem('isLoggedIn');
     this.userid = localStorage.getItem('userid');
     console.log(this.userid);
@@ -52,6 +55,7 @@ export class AppComponent implements OnInit {
   logout() {
     localStorage.setItem('isLoggedIn', 'false');
     localStorage.setItem('userid', null);
+    localStorage.setItem('username', null);
     // console.log('logged out val:' + localStorage.getItem('isLoggedIn'));
 
     this.router.navigate(['sessions/signin']);

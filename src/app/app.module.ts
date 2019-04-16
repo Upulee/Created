@@ -19,12 +19,12 @@ import { DashboardComponentComponent } from './views/dashboard-component/dashboa
 import { ChartsModule } from 'ng2-charts';
 import { ReportsComponent } from './views/reports/reports/reports.component';
 import { FundsTransferComponent } from './views/funds-transfer/funds-transfer/funds-transfer.component';
-
+import { DialogpopupComponent } from './views/dialogpopup/dialogpopup.component';
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent, HeaderComponent, FooterComponent, NavComponent, DashboardComponentComponent, ReportsComponent, FundsTransferComponent],
+  declarations: [AppComponent, AuthLayoutComponent, AdminLayoutComponent, HeaderComponent, FooterComponent, NavComponent, DashboardComponentComponent, ReportsComponent, FundsTransferComponent,  DialogpopupComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -41,6 +41,7 @@ import { FundsTransferComponent } from './views/funds-transfer/funds-transfer/fu
     ChartsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogpopupComponent],
 })
 export class AppModule {}

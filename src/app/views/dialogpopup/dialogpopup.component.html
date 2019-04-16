@@ -1,0 +1,26 @@
+<h4 mat-dialog-title>Please Confirm the Details</h4>
+
+<div mat-dialog-content>
+  <ul>
+      <li>
+          User : {{this.username}}
+      </li>
+      <li>
+          Phone Number : +91 {{data.customermobno}}
+      </li>
+      <li>
+          Service Operator : {{data.serviceoperatorid}}
+      </li>
+      <li>
+          Recharged Amount : Rs. {{data.amount}}
+      </li>
+      <li>
+          Stv type : {{data.stvtype}}
+      </li>
+    </ul>
+</div>
+<div mat-dialog-actions>
+  <button mat-button  (click)="CancelClick()">Cancel</button>
+  <button mat-button  (click)="OkClick()" cdkFocusInitial>Ok</button>
+  <!-- mat-dialog-close-->
+</div>

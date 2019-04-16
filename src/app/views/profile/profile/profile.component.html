@@ -11,7 +11,7 @@
               <mat-card>
                 <mat-card-header style="background-color:#6fc8fc;" class="text-center">
                   <mat-card-title class="ml-0 text-center" style="font-family: 'Calibri', cursive;color: black;font-size:2rem;"
-                    >Mobile Recharge</mat-card-title
+                    >{{topic}}</mat-card-title
                   >
                 </mat-card-header>
                 <mat-divider></mat-divider>
@@ -123,8 +123,8 @@
                           aria-labelledby="example-radio-group-label"
                           class="example-radio-group"
                           [formControl]="reloadForm.controls['rechargetype']">
-                          <mat-radio-button class="example-radio-button"  [value]="1">Stv 1</mat-radio-button>
-                          <mat-radio-button class="example-radio-button"  [value]="2">Stv 2</mat-radio-button>
+                          <mat-radio-button class="example-radio-button"  [value]="1">Top up</mat-radio-button>
+                          <mat-radio-button class="example-radio-button"  [value]="2">Stv</mat-radio-button>
                           </mat-radio-group>
                         <!-- </mat-form-field> -->
                       </div>
@@ -139,12 +139,13 @@
                     fxLayoutWrap="wrap"
                     fxLayoutAlign="center"
                   >
+                     <!-- (click)="recharge()" -->
                     <div fxFlex="100">
                       <button
                         mat-raised-button
                         color="primary"
                         [disabled]="reloadForm.invalid"
-                        (click)="recharge()"
+                        (click)="openDialog()"
                         style="width: 100%;"
                       >
                         Recharge
@@ -161,7 +162,7 @@
   </div>
 
   <div class="col-lg-3" style="margin-top:5rem;"> 
-    <img style="height:60vh;float: left;" src="assets/images/mobile_img_main.jpg" alt="">
+    <img style="height:60vh;float: left;" src="assets/images/mobile_img_main.png" alt="">
   </div>
 </div>
 </div>
